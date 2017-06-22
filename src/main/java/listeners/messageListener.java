@@ -7,7 +7,7 @@ package listeners;
 
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
-import core.commandHandler;
+import core.CommandHandler;
 
 public class messageListener extends ListenerAdapter {
 
@@ -15,7 +15,7 @@ public class messageListener extends ListenerAdapter {
 
         if (event.getMessage().getContent().startsWith("-") && event.getMessage().getAuthor().getId() != event.getJDA().getSelfUser().getId()) {
 
-            commandHandler.handleCommand(commandHandler.parser.parse(event.getMessage().getContent(), event));
+            CommandHandler.handleCommand(CommandHandler.parser.parse(event.getMessage().getContent(), event));
         }
 
     }

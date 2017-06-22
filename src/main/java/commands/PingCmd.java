@@ -1,5 +1,6 @@
 package commands;
 
+import core.PermissionController;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 /**
@@ -9,6 +10,9 @@ public class PingCmd implements Command {
 
     private final String help = "USAGE: -ping";
 
+    private PermissionController controller = new PermissionController();
+    private String[] permittedRoles = {"Master Of The Universe", "CEO", "Artificial Intelligence", "Admin", "Techniker"};
+
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return false;
@@ -16,6 +20,9 @@ public class PingCmd implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
+
+        if (!controller.check(event, permittedRoles))
+            return;
 
         event.getTextChannel().sendMessage("Pong!").queue();
     }

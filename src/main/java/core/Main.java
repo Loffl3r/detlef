@@ -1,9 +1,9 @@
 package core;
 
+import commands.HelpCmd;
 import commands.PingCmd;
 import listeners.messageListener;
 import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
@@ -28,29 +28,14 @@ public class Main {
         builder.setToken(dsToken);
         builder.setAutoReconnect(true);
 
-        builder.setGame(new Game() {
-            @Override
-            public String getName() {
-                return "mit deiner Seele";
-            }
-
-            @Override
-            public String getUrl() {
-                return "";
-            }
-
-            @Override
-            public GameType getType() {
-                return GameType.DEFAULT;
-            }
-        });
+        builder.setGame(Game.of("v1.1"));
 
         initListeners();
         initCommands();
 
 
         try {
-            JDA jda = builder.buildBlocking();
+            builder.buildBlocking();
         } catch (LoginException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -68,7 +53,8 @@ public class Main {
 
     public static void initCommands() {
 
-        commandHandler.commands.put("ping", new PingCmd());
+        CommandHandler.commands.put("ping", new PingCmd());
+        CommandHandler.commands.put("help", new HelpCmd());
     }
 
 }

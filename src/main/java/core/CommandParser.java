@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
 
-public class commandParser {
+public class CommandParser {
 
     public commandContainer parse(String raw, MessageReceivedEvent event) {
 
