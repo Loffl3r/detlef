@@ -28,7 +28,7 @@ public class Main {
         builder.setToken(dsToken);
         builder.setAutoReconnect(true);
 
-        builder.setGame(Game.of("v1.1"));
+        builder.setGame(Game.of("-help | v1.1"));
 
         initListeners();
         initCommands();
